@@ -1,0 +1,284 @@
+/* -- Reset ---------------------------------------------------------------- */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+i,
+em {
+  font-style: oblique; }
+
+b,
+strong {
+  font-weight: bold; }
+
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+  box-sizing: border-box; }
+
+*, *:before, *:after {
+  box-sizing: inherit; }
+
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 200;
+  src: local("Raleway ExtraLight"), local("Raleway-ExtraLight"), url(fonts/raleway-extralight.woff2) format("woff2");
+  unicode-range: U0-0FF, U131, U152-153, U2C 6, U2DA, U2DC, U2000-206F, U2074, U20AC, U2212, U2215, UE0FF, UEFFD, UF000; }
+
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Raleway"), url(fonts/raleway-normal.woff2) format("woff2");
+  unicode-range: U0-0FF, U131, U152-153, U2C 6, U2DA, U2DC, U2000-206F, U2074, U20AC, U2212, U2215, UE0FF, UEFFD, UF000; }
+
+.wysiwyg-text-align-left {
+  text-align: left; }
+
+.wysiwyg-text-align-right {
+  text-align: right; }
+
+.wysiwyg-text-align-justify {
+  text-align: justify; }
+
+.wysiwyg-align-top {
+  vertical-align: top; }
+
+.wysiwyg-align-middle {
+  vertical-align: middle; }
+
+.wysiwyg-align-bottom {
+  vertical-align: bottom; }
+
+.wysiwyg-float-right {
+  float: right;
+  margin-left: 10px; }
+
+.wysiwyg-float-left {
+  float: left;
+  margin-right: 10px; }
+
+html {
+  height: 100%;
+  background-color: #999EB7; }
+  @media (min-width: 1024px) {
+    html {
+      background: url(img/yellowsky-bg.jpg) no-repeat right center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover; } }
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  color: #5B769A; }
+  @media (max-width: 1023px) {
+    body {
+      padding-top: 8px;
+      background: linear-gradient(to bottom, #D0D0D0 0%, #999eb7 100%); } }
+
+.header {
+  font-weight: bold;
+  opacity: 0.95;
+  color: #B3404E; }
+  @media (max-width: 1023px) {
+    .header {
+      font-size: 48px;
+      margin: 8px;
+      text-align: center; } }
+  @media (min-width: 1024px) {
+    .header {
+      position: fixed;
+      top: -21px;
+      right: 92%;
+      width: 456px;
+      transform: rotate(270deg);
+      transform-origin: bottom right;
+      font-size: 75px; } }
+
+.main {
+  background: rgba(255, 255, 255, 0.9); }
+  @media (max-width: 1023px) {
+    .main {
+      padding: 24px 12px;
+      margin: 8px; } }
+  @media (min-width: 1024px) {
+    .main {
+      position: absolute;
+      top: 0;
+      margin-left: 9%;
+      width: 47%;
+      padding: 50px;
+      min-height: 100%; } }
+
+.aside {
+  background: rgba(255, 255, 255, 0.9); }
+  @media (max-width: 1023px) {
+    .aside {
+      padding: 24px 12px;
+      margin: 8px; } }
+  @media (min-width: 1024px) {
+    .aside {
+      position: fixed;
+      top: 58px;
+      left: 64%;
+      z-index: 1;
+      min-height: 400px;
+      height: 453px;
+      width: 29%;
+      padding: 55px; } }
+
+.footer {
+  height: 2em;
+  line-height: 2em;
+  color: #fff;
+  text-align: center; }
+  @media (min-width: 1024px) {
+    .footer {
+      position: fixed;
+      bottom: 58px;
+      left: 69%;
+      width: 19%;
+      background: rgba(0, 0, 0, 0.6);
+      box-shadow: 0px 0px 35px 5px #000; } }
+
+.footer a {
+  color: #fff; }
+
+h1 {
+  font-size: 38px;
+  font-weight: 300;
+  margin-top: 0; }
+  @media (min-width: 1024px) {
+    h1 {
+      font-size: 36px; } }
+
+h2 {
+  font-weight: 300;
+  font-size: 32px;
+  margin-top: 1em; }
+  @media (min-width: 1024px) {
+    h2 {
+      font-size: 36px; } }
+
+.post-heading {
+  margin-top: 0em; }
+
+h3 {
+  font-weight: 300;
+  font-size: 26px;
+  margin-top: 1em; }
+
+.date {
+  margin-top: 1em;
+  color: #818FA5; }
+
+p {
+  margin-top: 1em;
+  line-height: 1.8em;
+  font-size: 18px; }
+
+a {
+  text-decoration: none;
+  color: #2D7FD4; }
+
+.active a,
+a:hover {
+  color: #2ea2ff; }
+
+.nav {
+  margin-bottom: 1em; }
+  @media (max-width: 1023px) {
+    .nav {
+      text-align: center; } }
+
+.nav li {
+  display: inline-block;
+  margin-right: 22px;
+  font-size: 20px;
+  line-height: 1.8em; }
+
+.contact-links {
+  margin-top: 3em;
+  margin-left: -26px; }
+  @media (max-width: 1023px) {
+    .contact-links {
+      text-align: center; } }
+  @media (min-width: 1024px) and (max-width: 1630px) {
+    .contact-links {
+      margin-left: -12px; } }
+
+.contact-links a {
+  display: inline-block;
+  margin-left: 26px; }
+  @media (min-width: 1024px) and (max-width: 1630px) {
+    .contact-links a {
+      margin-left: 12px; } }
+
+.contact-links img {
+  width: 48px;
+  height: 48px; }
+  @media (min-width: 1024px) and (max-width: 1630px) {
+    .contact-links img {
+      width: 24px;
+      height: 24px; } }
+
+.main ul {
+  margin-top: 1em;
+  margin-left: 22px; }
+
+.main li {
+  list-style: disc;
+  line-height: 1.7em; }
+
+.main img {
+  display: block;
+  margin-top: 1em; }
+
+pre {
+  background: #fff;
+  margin-top: 1em;
+  padding: 8px;
+  font-family: Consolas, "Courier New", monospace;
+  line-height: 1.3em;
+  font-size: 14px; }

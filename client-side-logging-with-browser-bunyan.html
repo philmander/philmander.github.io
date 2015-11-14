@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="generator" content="Pagespace">
+        <meta charset="utf-8">
+
+        <title>Client-side Logging with Browser Bunyan | Phil Mander</title>
+
+        <meta name="viewport" content="width=device-width">
+        <meta property="og:title" content="Client-side Logging with Browser Bunyan | Phil Mander">
+        <meta name="description" content="Freelance full-stack Javascript/Node developer in Amsterdam, FE Architect at Backbase and creator Pagespace">
+
+        <link rel="shortcut icon" href="favicon.ico-v=1">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,300" rel="stylesheet" type="text/css">
+        <link type="text/css" rel="stylesheet" href="css/site.css-v=1">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/default.min.css">
+    </head>
+    <body>
+        <header class="header">Phil Mander</header>
+
+        <main class="main">
+                <h1>Client-side Logging with Browser Bunyan</h1>
+                <p class="date">2015-11-14</p>
+            <div>
+<div class="">
+    <p>In my Node/Express app, Pagespace, and various CLIs I’m working on, I try to provide a decent amount of logging. <a href="https://www.joyent.com/developers/node/design#logging">As recommended by Joyent</a>, I use <a href="https://github.com/trentm/node-bunyan">Bunyan</a> as my chosen logging framework. Bunyan’s premise is to store logs in a structure format, JSON. It also has some other nice features I find useful such as streams, child loggers and serializers.</p>
+<p>Bunyan is also great for client side Javascript logging in more complex frontend applications. The ability to log to multiple streams has been useful. One such application I’ve been working on can run in mobile webviews as part of an Android or iOS app. In such scenarios, its been useful to stream logging to a native bridge as well as the webview console. Another example I’ve worked on is a web app for running W3C widgets. The widget runs in an iframe, while the parent frame provides various client-side tools for developing and debugging a widget. The code running in the iframe uses Bunyan logging with two streams; one logs to the standard browser console, while the other posts messages to the parent frame which outputs the logs records as HTML.</p>
+<p>Running Bunyan is possible in the browser by way of <a href="https://github.com/trentm/node-bunyan#browserify">Browserify</a>. But, unfortunately, this means it still pulls in a bunch of dependencies which aren’t relevant in the browser environment and a bit too bloated for my liking. Therefore, I created a fork of Bunyan, <a href="https://github.com/philmander/browser-bunyan">Browser Bunyan</a>, for running a lightweight build of Bunyan in the browser.</p>
+<p>Browser Bunyan can be used via Browserify or as a standalone build and is available via Bower and NPM. It also ships with a bonus out-of-the-box stream for pretty printing logs to the browser console:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> log = bunyan.createLogger({
+    name: <span class="hljs-string">'play'</span>,
+    streams: [
+        {
+            level: <span class="hljs-string">'info'</span>,
+            stream: <span class="hljs-keyword">new</span> bunyan.ConsoleFormattedStream()
+            type: <span class="hljs-string">'raw'</span>
+        }
+    ]
+});
+
+log.info(<span class="hljs-string">'hi on info'</span>);
+</code></pre>
+<p><img src="_media/browser-bunyan.png" width="100%" alt="Formatted console logging"></p>
+<h3 id="integrating-with-angular">Integrating with Angular</h3>
+<p>Pagespace’s dashboard application is written using Angular. I use Browser Bunyan as Angular’s logging implementation like this:</p>
+<pre><code class="lang-javascript">adminApp.config(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">$provide</span>) </span>{
+    $provide.decorator(<span class="hljs-string">'$log'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">$delegate</span>) </span>{
+        $delegate = bunyan.createLogger({
+            name: <span class="hljs-string">'myLogger'</span>,
+            streams: [{
+                level: <span class="hljs-string">'info'</span>,
+                stream: <span class="hljs-keyword">new</span> bunyan.ConsoleFormattedStream(),
+                type: <span class="hljs-string">'raw'</span>
+            }]
+        });
+        <span class="hljs-keyword">return</span> $delegate;
+    });
+});
+</code></pre>
+<p>The Github repo for Browser Bunyan <a href="https://github.com/philmander/browser-bunyan">is here</a></p>
+
+</div>
+
+</div>
+        </main>
+
+        <aside class="aside">
+            <nav class="nav">
+                <div>
+<ul class="">
+            <li class=" active"><a href="index.html">Posts</a></li>
+            <li class=""><a href="work.html">Work</a></li>
+            <li class=""><a href="about-me.html">About Me</a></li>
+</ul>
+</div>
+            </nav>
+            <div class="secondary">
+                <div>
+<p>I'm a freelance full-stack Javascript/Node developer in Amsterdam, FE Architect at <a href="http://backbase.com" target="_blank">Backbase</a> and creator of <a href="https://github.com/pagespace/pagespace">Pagespace</a>.</p>
+
+<p class="contact-links">
+  <a href="mailto:philip.mander@gmail.com.html" class="social-icon">
+  	<img src="_media/email.svg" alt="philip.mander@gmail.com" title="philip.mthander@gmail.com">
+  </a>
+  <a href="https://github.com/philmander" class="social-icon">
+  	<img src="_media/github.svg" alt="Github" title="Github">
+  </a>
+  <a href="https://twitter.com/philmander" class="social-icon">
+  	<img src="_media/twitter.svg" alt="Twitter" title="Twitter">
+  </a>
+  <a href="https://nl.linkedin.com/in/philmander" class="social-icon">
+  	<img src="_media/linkedin.svg" alt="Linked In" title="Linked in">
+  </a>
+  <a href="tel:0031623865456.html" class="social-icon">
+  	<img src="_media/phone.svg" alt="+31 (0) 623 865456" title="+31 (0) 623 865456">
+  </a>
+</p>
+</div>
+            </div>
+        </aside>
+
+        <footer class="footer">
+            Made with <a href="/pagespace.html">Pagespace</a>
+        </footer>
+    </body>
+</html>
